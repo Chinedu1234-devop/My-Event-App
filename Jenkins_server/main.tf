@@ -41,7 +41,7 @@ resource "aws_instance" "myeventapp" {
   instance_type               = "c7i-flex.large"
   vpc_security_group_ids      = [aws_security_group.instance_sg.id]
   associate_public_ip_address = true
-  key_name = "mykey"
+  key_name = "mykey.pem"
 
 
 
