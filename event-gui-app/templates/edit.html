@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POST" action="/update/{{ event.id }}">
+    <input type="text" name="name" value="{{ event.name }}" required>
+    <input type="date" name="date" value="{{ event.date }}" required>
+    <input type="text" name="location" value="{{ event.location }}" required>
+    <button type="submit">Update Event</button>
+</form>
+
+<a href="/">⬅ Back</a>
+
+{% endblock %}
