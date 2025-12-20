@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "chinedu10/event-gui-app"
-        APP_SERVER = "ec2-user@APP_SERVER_PRIVATE_IP"
+        APP_SERVER = "ec2-user@172.31.43.120"
     }
 
     stages {
