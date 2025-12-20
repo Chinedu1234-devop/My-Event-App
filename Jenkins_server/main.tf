@@ -55,6 +55,11 @@ sudo yum install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
+sudo yum install -y git
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
 EOF
   tags = {
     Name = "jenkins-server-instance"
