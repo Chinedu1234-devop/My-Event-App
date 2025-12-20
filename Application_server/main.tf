@@ -7,7 +7,7 @@ resource "aws_instance" "myeventapp" {
   instance_type               = "t3.micro"
   vpc_security_group_ids      = [aws_security_group.instance_sg.id]
   associate_public_ip_address = true
-
+  key_name = "mykey"
   tags = {
     Name = "my-event-app-instance"
   }
@@ -18,6 +18,7 @@ resource "aws_security_group" "instance_sg" {
   name        = "application-server-sg"
   description = "Security group for EC2 instance"
   vpc_id      = data.aws_vpc.default.id
+
 
   ingress {
     description = "SSH"
