@@ -37,22 +37,23 @@ pipeline {
             steps {
                 sh 'docker push $IMAGE_NAME:latest'
             }
+        }
 
-            stage('Deploy to App Server') {
-                steps {
+        stage('Deploy to App Server') {
+            steps {
                 sshagent(credentials: ['app-server-ssh']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $APP_SERVER << 'EOF'
                       docker pull $IMAGE_NAME:latest
                       docker stop event-app || true
                       docker rm event-app || true
-                      docker run -d -p 5000:5000 --name event-app $IMAGE_NAME:latest
+                      docker run -d -p 5000:5000 --restart unless-stopped \
+                        -p 5000:5000 --name event-app $IMAGE_NAME:latest
                     EOF
                     '''
                 }
-                }
             }
-
+        }
     }
 
     post {
