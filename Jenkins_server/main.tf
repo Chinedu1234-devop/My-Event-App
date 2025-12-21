@@ -59,6 +59,7 @@ sudo systemctl status jenkins
 sudo yum install -y git
 sudo yum install -y docker
 sudo service docker start
+sudo usermod -aG docker ec2-user
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 EOF
