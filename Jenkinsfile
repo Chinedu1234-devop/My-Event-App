@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "bwhizzy25/event-gui-app"
-        APP_SERVER = "ec2-user@172.31.43.120"
+        APP_SERVER = "ec2-user@172.31.39.162"
     }
 
     stages {
@@ -37,20 +37,22 @@ pipeline {
             steps {
                 sh 'docker push $IMAGE_NAME:latest'
             }
-        }
 
-        stage('Deploy to App Server') {
-            steps {
-                sh """
-                ssh -o StrictHostKeyChecking=no $APP_SERVER << EOF
-                  docker pull $IMAGE_NAME:latest
-                  docker stop event-app || true
-                  docker rm event-app || true
-                  docker run -d -p 5000:5000 --name event-app $IMAGE_NAME:latest
-                EOF
-                """
+            stage('Deploy to App Server') {
+                steps {
+                sshagent(credentials: ['app-server-ssh']) {
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no $APP_SERVER << 'EOF'
+                      docker pull $IMAGE_NAME:latest
+                      docker stop event-app || true
+                      docker rm event-app || true
+                      docker run -d -p 5000:5000 --name event-app $IMAGE_NAME:latest
+                    EOF
+                    '''
+                }
+                }
             }
-        }
+
     }
 
     post {
@@ -62,3 +64,4 @@ pipeline {
         }
     }
 }
+ 
