@@ -12,6 +12,14 @@ resource "aws_instance" "myeventapp" {
     Name = "my-event-app-instance"
   }
 
+  user_data = <<EOF
+#!/bin/bash
+sudo yum update -y
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker ec2-user
+EOF
 }
 
 resource "aws_security_group" "instance_sg" {
@@ -57,4 +65,3 @@ ingress {
     Name = "application-sg"
   }
 }
-
