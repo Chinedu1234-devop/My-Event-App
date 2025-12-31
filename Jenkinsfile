@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "bwhizzy25/event-gui-app"
+        IMAGE_NAME = "chinedu10/event-gui-app"
         APP_SERVER = "ec2-user@172.31.33.195"
     }
 
@@ -69,4 +69,5 @@ pipeline {
         }
     }
 }
+
  
