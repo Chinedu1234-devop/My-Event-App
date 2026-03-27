@@ -103,7 +103,6 @@ By combining infrastructure automation, CI/CD pipelines, and containerization, w
 
 <img width="1384" height="580" alt="Picture 2" src="https://github.com/user-attachments/assets/919cec90-9b1a-4160-b316-5b9b7f625d4d" />
 
-<img width="1384" height="580" alt="Picture 2" src="https://github.com/user-attachments/assets/760891dc-fab9-4ffe-837c-5fcc58c0503a" />
-
+<img width="1384" height="580" alt="Picture 1" src="https://github.com/user-attachments/assets/ba08feb3-a354-4ab8-a874-a0caa223d356" />
 
 
